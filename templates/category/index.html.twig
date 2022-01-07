@@ -1,15 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CategoryController!{% endblock %}
+{% block title %}Burn-Note{% endblock %}
 
 {% block body %}
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/adrienlloret/Documents/Burn-note/src/Controller/CategoryController.php'|file_link(0) }}">src/Controller/CategoryController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/adrienlloret/Documents/Burn-note/templates/category/index.html.twig'|file_link(0) }}">templates/category/index.html.twig</a></code></li>
-    </ul>
+    <h1>Vos categories 📝</h1>
+    {% if categories %}
+      <section class="notes-container">
+        {% for category in categories %}
+          <div class="note">
+            <h2>{{ category.name }}</h2>
+              </div>
+        {% endfor %}
+      </section>
+    {% else %}
+      <span>Aucune category</span>
+    {% endif %}
 </div>
 {% endblock %}

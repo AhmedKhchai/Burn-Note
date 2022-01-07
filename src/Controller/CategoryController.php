@@ -11,19 +11,20 @@ use App\Entity\Category;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Form\CategoryType;
 
-/**
- * @Route("/category")
+    /**
+     * @Route("/category")
  */
 class CategoryController extends AbstractController
 {
     /**
      * @Route("/", name="category_index")
      */
-    public function index(): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
+        $rep = $doctrine->getRepository(Category::class);
         return $this->render('category/index.html.twig', [
-            'controller_name' => 'CategoryController',
-        ]);
+        'categories' => $rep->findAll(),
+      ]);
     }
 
     /**
@@ -31,18 +32,18 @@ class CategoryController extends AbstractController
      */
     public function add(ManagerRegistry $doctrine, Request $request): Response
     {
-      $category = new Category();
-      $form = $this->createForm(CategoryType::class, $category);
+        $category = new Category();
+        $form = $this->createForm(CategoryType::class, $category);
 
-      $form->handleRequest($request);
-      if ($form->isSubmitted() && $form->isValid()) {
-        $em = $doctrine->getManager();
-        $em->persist($category);
-        $em->flush();
-        return $this->redirectToRoute('category_index');
-      }
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $doctrine->getManager();
+            $em->persist($category);
+            $em->flush();
+            return $this->redirectToRoute('category_index');
+        }
 
-      return $this->render('category/create.html.twig', [
+        return $this->render('category/create.html.twig', [
         'form' => $form->createView()
       ]);
     }
@@ -52,18 +53,18 @@ class CategoryController extends AbstractController
      */
     public function edit(ManagerRegistry $doctrine, Request $request, int $id): Response
     {
-      $rep = $doctrine->getRepository(Category::class);
-      $category = $rep->find($id);
-      $form = $this->createForm(CategoryType::class, $category);
+        $rep = $doctrine->getRepository(Category::class);
+        $category = $rep->find($id);
+        $form = $this->createForm(CategoryType::class, $category);
 
-      $form->handleRequest($request);
-      if ($form->isSubmitted() && $form->isValid()) {
-        $em = $doctrine->getManager();
-        $em->flush();
-        return $this->redirectToRoute('category_index');
-      }
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $doctrine->getManager();
+            $em->flush();
+            return $this->redirectToRoute('category_index');
+        }
 
-      return $this->render('category/create.html.twig', [
+        return $this->render('category/create.html.twig', [
         'form' => $form->createView()
       ]);
     }
@@ -73,12 +74,12 @@ class CategoryController extends AbstractController
      */
     public function delete(ManagerRegistry $doctrine, Request $request, int $id): Response
     {
-      $rep = $doctrine->getRepository(Category::class);
-      $category = $rep->find($id);
-      $em = $doctrine->getManager();
-      $em->remove($category);
-      $em->flush();
+        $rep = $doctrine->getRepository(Category::class);
+        $category = $rep->find($id);
+        $em = $doctrine->getManager();
+        $em->remove($category);
+        $em->flush();
 
-      return $this->redirectToRoute('category_index');
+        return $this->redirectToRoute('category_index');
     }
 }
