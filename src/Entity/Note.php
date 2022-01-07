@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=NoteRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Note
 {
@@ -43,6 +44,25 @@ class Note
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="notes")
      */
     private $categories;
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist() {
+      if (!$this->getCreatedAt()) {
+        $this->created_at = new \DateTimeImmutable();
+      }
+      if (!$this->getUpdatedAt()) {
+        $this->updated_at = new \DateTimeImmutable();
+      }
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate() {
+      $this->updated_at = new \DateTimeImmutable();
+    }
 
     public function __construct()
     {
