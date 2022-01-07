@@ -1,3 +1,12 @@
+:root {
+  --orange: #E6A954;
+  --marron: #241C12;
+  --gris: #000000A8;
+  --black: #1A140D;
+  --red: #E90D00;
+  --text-content: #EFEFEF;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -13,8 +22,22 @@
   padding: 2px 6px; 
 }
 
+h1 {
+  letter-spacing: -0.45px;
+  font: normal normal bold 90px/113px Dosis;
+  text-align: center;
+  color: var(--orange);
+}
+
+#title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 body {
-  background-color: rgba(0, 0, 0, 0.747);
+  background-color: var(--marron);
+  color: var(--text-content);
 }
 
 .notes-container {
@@ -25,9 +48,33 @@ body {
 }
 
 .note {
-  background-color: rgb(85, 45, 0);
+  background-color: var(--black);
   border-radius: 0.4rem;
-  border: 1px solid orange;
+  border: 1px solid var(--orange);
   min-height: 8rem;
   padding: 1rem 1.5rem;
+}
+
+[function="note-create"] {
+  position: absolute;
+  z-index: 10;
+  bottom: 1rem;
+  right: 70px;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: var(--orange);
+  box-shadow: 0px 5px 26px var(--gris);
+}
+
+[function="note-create"]::after {
+  content: '+';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--red);
+  font: normal normal bold 90px/113px Dosis;
+  font-size: 6em;
 }

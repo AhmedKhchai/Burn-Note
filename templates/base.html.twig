@@ -15,6 +15,18 @@
         {% endblock %}
     </head>
     <body>
+        <div id="title">
+          <h1>Burn-notes</h1>
+          <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_kdxnzxlb.json" background="transparent" speed="1" style="width: 125px; height: 125px;" loop autoplay></lottie-player>
+        </div>
         {% block body %}{% endblock %}
+        <div function="note-create"></div>
+
+        {# Ressources #}
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        </style>
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     </body>
 </html>
