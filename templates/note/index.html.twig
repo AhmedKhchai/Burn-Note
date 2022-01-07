@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello NoteController!{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1>Vos notes 📝</h1>
+    {% if notes %}
+      <section class="notes-container">
+        {% for note in notes %}
+          <div class="note">
+            <h2>{{ note.title }}</h2>
+            <p>{{ note.content|slice(0,100)|raw }}</p>
+          </div>
+        {% endfor %}
+      </section>
+    {% else %}
+      <span>Aucune notes</span>
+    {% endif %}
+</div>
+{% endblock %}

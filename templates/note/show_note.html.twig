@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle note{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <div class="note">
+      <h2>{{ note.title }}</h2>
+      <div class="tags">
+        {% for category in note.categories %}
+          <span class="tag">#{{ category.name }}</span>
+        {% endfor %}
+      </div>
+      <code>{{ note.content|raw }}</code>
+    </div>
+</div>
+{% endblock %}
