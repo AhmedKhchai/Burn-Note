@@ -8,6 +8,7 @@
         {% block stylesheets %}
             {# {{ encore_entry_link_tags('app') }} #}
             <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+            <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
         {% endblock %}
 
         {% block javascripts %}
@@ -16,12 +17,10 @@
     </head>
     <body>
         <div id="title">
-          <h1>Burn-notes</h1>
-          <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_kdxnzxlb.json" background="transparent" speed="1" style="width: 125px; height: 125px;" loop autoplay></lottie-player>
+          <h1><a href="{{ path('note_index') }}">Burn-notes</a></h1>
+          <lottie-player id="fire-lottie" src="https://assets1.lottiefiles.com/private_files/lf30_kdxnzxlb.json" background="transparent" speed="1" loop autoplay></lottie-player>
         </div>
         {% block body %}{% endblock %}
-        <div function="note-create"></div>
-
         {# Ressources #}
         <style>
           @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap');

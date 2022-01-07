@@ -1,0 +1,39 @@
+@media (max-width: 1200px){
+  .notes-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  h1 {
+    font: normal normal bold 65px/76px Dosis;
+  }
+
+  #fire-lottie {
+    width: 90px;
+    height: 90px;
+  }
+
+  .note-button {
+    height: 4rem;
+    width: 4rem;
+  }
+
+  .note-button svg {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media (max-width: 1000px){
+  .notes-container {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font: normal normal bold 45px/56px Dosis;
+  }
+
+  #fire-lottie {
+    width: 70px;
+    height: 70px;
+  }
+}
