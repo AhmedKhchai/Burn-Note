@@ -14,11 +14,41 @@
           <path id="Icon_awesome-check" data-name="Icon awesome-check" d="M14.157,35.049.61,21.5a2.084,2.084,0,0,1,0-2.947l2.947-2.947a2.084,2.084,0,0,1,2.947,0l9.125,9.125L35.176,5.188a2.084,2.084,0,0,1,2.947,0l2.947,2.947a2.084,2.084,0,0,1,0,2.947L17.1,35.049A2.084,2.084,0,0,1,14.157,35.049Z" transform="translate(0 -4.577)" fill="#e90d00"/>
         </svg>
     </div>
-    {# Faire un dropdown menu ? #}
-    <select name="categories" multiple>
-      <option value="volvo">Exemple catégorie</option>
-    </select>
+    {{ form_widget(form.categories) }}
     {{ form_end(form) }}
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+<script>
+	new TomSelect("#note_categories",{
+		plugins: ['remove_button'],
+		create: true,
+    hidePlaceholder: true,
+		onItemAdd:function(){
+			this.setTextboxValue('');
+			this.refreshOptions();
+		},
+    onOptionAdd:function(data){
+      fetch(`{{ path('category_add') }}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data,
+        })
+      })
+    },
+		render:{
+      option_create: function(data, escape) {
+			return '<div class="create">Ajouter <strong>' + escape(data.input) + '</strong>&hellip;</div>';
+      },
+      no_results:function(data,escape){
+        return '<div class="no-results">Aucun résultat trouvé pour "' + escape(data.input) + '"</div>';
+      },
+		}
+	});
+	
+</script>
 {% endblock %}

@@ -32,19 +32,13 @@ class CategoryController extends AbstractController
     public function add(ManagerRegistry $doctrine, Request $request): Response
     {
       $category = new Category();
-      $form = $this->createForm(CategoryType::class, $category);
+      $postData = json_decode($request->getContent());
+      $category->setName($postData->name);
+      $em = $doctrine->getManager();
+      $em->persist($category);
+      $em->flush();
 
-      $form->handleRequest($request);
-      if ($form->isSubmitted() && $form->isValid()) {
-        $em = $doctrine->getManager();
-        $em->persist($category);
-        $em->flush();
-        return $this->redirectToRoute('category_index');
-      }
-
-      return $this->render('category/create.html.twig', [
-        'form' => $form->createView()
-      ]);
+      return $this->json(array('name' => $postData->name, 'cat' => $category));
     }
 
     /**

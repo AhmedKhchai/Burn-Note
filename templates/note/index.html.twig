@@ -7,7 +7,7 @@
     <section class="notes-container">
       {% for note in notes %}
         <a href="{{ path('show_note', {'id': note.id}) }}">
-          <div class="note">
+          <div class="note {{ id == note.id ? 'new-note' : '' }}">
             <h2>{{ note.title }}</h2>
             <p>{{ note.content|slice(0,100)|raw }}</p>
           </div>

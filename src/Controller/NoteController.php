@@ -16,11 +16,13 @@ class NoteController extends AbstractController
     /**
      * @Route("/", name="note_index")
      */
-    public function listNotes(ManagerRegistry $doctrine): Response
+    public function listNotes(ManagerRegistry $doctrine, Request $request): Response
     {
       $rep = $doctrine->getRepository(Note::class);
       return $this->render('note/index.html.twig', [
-        'notes' => $rep->findAll(),
+        // 'notes' => $rep->findAll(),
+        'notes' => $rep->findBy(array(), array('created_at' => 'DESC')),
+        'id' => $request->query->get('id')
       ]);
     }
 
@@ -48,7 +50,7 @@ class NoteController extends AbstractController
         $em = $doctrine->getManager();
         $em->persist($note);
         $em->flush();
-        return $this->redirectToRoute('note_index');
+        return $this->redirectToRoute('note_index', ['id' => $note->getId()]);
       }
 
       return $this->render('note/create.html.twig', [
