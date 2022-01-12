@@ -17,16 +17,6 @@ use App\Form\CategoryType;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/", name="category_index")
-     */
-    public function index(): Response
-    {
-        return $this->render('category/index.html.twig', [
-            'controller_name' => 'CategoryController',
-        ]);
-    }
-
-    /**
      * @Route("/add", name="category_add")
      */
     public function add(ManagerRegistry $doctrine, Request $request): Response
@@ -73,6 +63,6 @@ class CategoryController extends AbstractController
       $em->remove($category);
       $em->flush();
 
-      return $this->redirectToRoute('category_index');
+      return $this->redirectToRoute('note_index');
     }
 }

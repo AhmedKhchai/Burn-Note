@@ -25,7 +25,7 @@ class NoteController extends AbstractController
         'categories' => $repCategory->findBy(array(), array('created_at' => 'DESC')),
         'notes' => $repNote->findBy(array(), array('created_at' => 'DESC')),
         
-        'id' => $request->query->get('id')
+        'note_id' => $request->query->get('note_id')
       ]);
     }
     /**
@@ -39,6 +39,7 @@ class NoteController extends AbstractController
         return $this->render('note/index.html.twig', [
         'categories' => $repCategory->findBy(array(), array('created_at' => 'DESC')),
         'notes' => $notes,
+        'category_id' => $id
       ]);
     }
 
@@ -67,7 +68,7 @@ class NoteController extends AbstractController
             $em = $doctrine->getManager();
             $em->persist($note);
             $em->flush();
-            return $this->redirectToRoute('note_index', ['id' => $note->getId()]);
+            return $this->redirectToRoute('note_index', ['note_id' => $note->getId()]);
         }
 
         return $this->render('note/create.html.twig', [
@@ -88,7 +89,7 @@ class NoteController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $doctrine->getManager();
             $em->flush();
-            return $this->redirectToRoute('note_index');
+            return $this->redirectToRoute('note_index', ['note_id' => $id]);
         }
 
         return $this->render('note/create.html.twig', [
