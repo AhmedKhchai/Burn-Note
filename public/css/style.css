@@ -54,7 +54,6 @@ body {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 4rem;
 }
-
 .note {
   background-color: var(--black);
   border-radius: 1rem;
@@ -64,7 +63,6 @@ body {
   transition: filter 300ms ease-out;
   color: var(--text-content);
 }
-
 /* Animations */
 .note:hover {
   transition: filter 300ms ease-out;
@@ -73,6 +71,10 @@ body {
 
 .note.new-note {
   animation: roll-in 1.5s ease;
+}
+.note.show-note {
+  width: 50%;
+  margin: 2rem auto;
 }
 
 @keyframes roll-in {

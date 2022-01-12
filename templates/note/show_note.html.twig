@@ -4,14 +4,20 @@
 
 {% block body %}
 <div class="example-wrapper">
-    <div class="note">
+    <div class="note show-note">
       <h2>{{ note.title }}</h2>
       <div class="tags">
-        {% for category in note.categories %}
+        {% for category in note.categories %} 
           <span class="tag">#{{ category.name }}</span>
         {% endfor %}
       </div>
       <code>{{ note.content|raw }}</code>
     </div>
+    <a class="note-button" href="{{ path('note_delete', {'id': note.id}) }}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 22.016 27.756">
+  <path id="Exclusion_2" data-name="Exclusion 2" d="M212.992-255.243a11.87,11.87,0,0,1-7.756-2.787,8.838,8.838,0,0,1-3.219-6.715,8.917,8.917,0,0,1,1.595-5.622,27.276,27.276,0,0,1,3.974-4.387c2.472-2.365,5.027-4.81,5.431-8.245a15.174,15.174,0,0,1,4.723,3.485,22.649,22.649,0,0,1,3.447,4.893,22.946,22.946,0,0,1,2.829,9.876c0,5.236-4.933,9.5-11,9.5,2.851,0,5.17-2.009,5.17-4.472a10.8,10.8,0,0,0-1.332-4.649,8.767,8.767,0,0,0-3.846-3.944c-.19,1.617-1.393,2.768-2.556,3.881-1.35,1.292-2.746,2.627-2.621,4.712,0,2.457,2.314,4.463,5.158,4.472Z" transform="translate(-202 283)" fill="#e90d00"/>
+</svg>
+  </a>
+   
 </div>
 {% endblock %}
