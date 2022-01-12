@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
 :root {
-  --orange: #E6A954;
-  --marron: #241C12;
-  --gris: #000000A8;
+  --orange: #e6a954;
+  --marron: #241c12;
+  --gris: #000000a8;
   --gris-secondaire: #707070;
   --gris-clair: #00000029;
-  --black: #1A140D;
-  --red: #E90D00;
-  --text-content: #EFEFEF;
+  --black: #1a140d;
+  --red: #e90d00;
+  --text-content: #efefef;
 }
 
 * {
@@ -68,7 +68,7 @@ body {
 /* Animations */
 .note:hover {
   transition: filter 300ms ease-out;
-  filter: sepia(1)
+  filter: sepia(1);
 }
 
 .note.new-note {
@@ -117,15 +117,22 @@ button#note_save {
   pointer-events: none;
 }
 
-.note-button:hover svg path{
-  fill: var(--orange)
+.note-button:hover svg path {
+  fill: var(--orange);
 }
 
-.note-button:hover::after{
+.note-button:hover::after {
   color: var(--orange);
 }
-.note-button:hover{
-  background: transparent radial-gradient(closest-side at 50% 50%, #E68754 0%, #FB2B0E 54%, #E90D00 100%) 0% 0% no-repeat padding-box;
+.note-button:hover {
+  background: transparent
+    radial-gradient(
+      closest-side at 50% 50%,
+      #e68754 0%,
+      #fb2b0e 54%,
+      #e90d00 100%
+    )
+    0% 0% no-repeat padding-box;
 }
 
 button {
@@ -143,13 +150,13 @@ button {
 .note-form {
   width: 50%;
   height: 100%;
-  background: #E6A954 0% 0% no-repeat padding-box;
-  box-shadow: 0px 5px 26px #000000A8;
-  border: 0.5px solid #E6A954;
+  background: #e6a954 0% 0% no-repeat padding-box;
+  box-shadow: 0px 5px 26px #000000a8;
+  border: 0.5px solid #e6a954;
   border-radius: 23px;
 }
 
-.note-form form{
+.note-form form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -159,7 +166,9 @@ button {
   gap: 1rem;
 }
 
-.note-form input, .note-form textarea, .ts-wrapper {
+.note-form input,
+.note-form textarea,
+.ts-wrapper {
   width: 80%;
   min-height: 2rem;
   background: white 0% 0% no-repeat padding-box;
@@ -169,6 +178,47 @@ button {
   opacity: 0.56;
 }
 
-.note-form input, .note-form textarea {
+.note-form input,
+.note-form textarea {
   padding: 8px 8px;
+}
+
+.list-categories {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0rem;
+}
+
+.category {
+  display: inline-block;
+  margin: 0rem 1rem;
+  text-align: center;
+  vertical-align: middle;
+  height: 2rem;
+  width: 4rem;
+  background: var(--orange) 0% 0% no-repeat padding-box;
+  border: 1px solid #00000000;
+  color: var(--black);
+  opacity: 1;
+}
+
+.pill-button {
+  display: inline-block;
+  background: var(--orange) 0% 0% no-repeat padding-box;
+  border: none;
+  color: var(--black);
+  padding: 10px 20px;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0rem 1rem;
+  cursor: pointer;
+  border-radius: 16px;
+  letter-spacing: -0.45px;
+  font: normal normal bold 25px/30px Dosis;
+}
+.pill-button:hover {
+  background: var(--red) 0% 0% no-repeat padding-box;
 }
